@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Conselhos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <span class="advice-id">Conselho #<span id="advice-number">--</span></span>
+    
+    <p class="advice-text" id="advice-text">Clique no botão para receber um conselho...</p>
+    <small class="original-text" id="original-text"></small>
+
+    <div class="actions">
+      <button id="btn-get" class="btn">Novo Conselho</button>
+      <button id="btn-copy" class="btn btn-secondary">Copiar</button>
+    </div>
+
+    <div class="share-container">
+      <p class="share-title">Compartilhar:</p>
+      <div class="share-buttons">
+        <a id="btn-whatsapp" class="btn btn-social btn-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a id="btn-facebook" class="btn btn-social btn-facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <button id="btn-instagram" class="btn btn-social btn-instagram">Instagram</button>
+        <a id="btn-tweet" class="btn btn-social btn-twitter" target="_blank" rel="noopener noreferrer">Twitter / X</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

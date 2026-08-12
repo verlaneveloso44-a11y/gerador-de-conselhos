@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: #0f172a;
+  color: #f8fafc;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.card {
+  background-color: #1e293b;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 540px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.advice-id {
+  color: #38bdf8;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.advice-text {
+  font-size: 1.25rem;
+  margin: 1.25rem 0 0.5rem 0;
+  line-height: 1.6;
+}
+
+.original-text {
+  display: block;
+  color: #94a3b8;
+  font-style: italic;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  min-height: 1.25rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  background-color: #38bdf8;
+  color: #0f172a;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: opacity 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background-color: #334155;
+  color: #f8fafc;
+}
+
+/* Área de Redes Sociais */
+.share-container {
+  border-top: 1px solid #334155;
+  padding-top: 1.25rem;
+}
+
+.share-title {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-social {
+  padding: 0.5rem 0.875rem;
+  font-size: 0.8rem;
+  color: #ffffff;
+}
+
+.btn-whatsapp {
+  background-color: #25d366;
+}
+
+.btn-facebook {
+  background-color: #1877f2;
+}
+
+.btn-instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.btn-twitter {
+  background-color: #1d9bf0;
+}
