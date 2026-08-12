@@ -4,14 +4,14 @@ Uma aplicação web interativa e responsiva que consome uma API pública para ge
 
 ---
 
-## 🔗 Demonstração
+## Demonstração
 
 Clique aqui para testar o projeto online:
 👉 **[Acessar o Gerador de Conselhos](https://verlaneveloso44-a11y.github.io/gerador-de-conselhos/)**
 
 ---
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 - 💡 **Conselhos Aleatórios:** Busca frases atualizadas da *Advice Slip API* sem repetição por cache.
 - 🌐 **Tradução Automática:** Traduz os conselhos de inglês para português em tempo real utilizando a *MyMemory Translation API*.
@@ -25,7 +25,7 @@ Clique aqui para testar o projeto online:
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **HTML5:** Estrutura semântica da aplicação.
 - **CSS3:** Estilização moderna com CSS Grid, Flexbox, variáveis e tema escuro.
@@ -36,15 +36,15 @@ Clique aqui para testar o projeto online:
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 | Conselho gerado | Buscando novo conselho |
 |:---:|:---:|
-| ![Tela com o conselho gerado](screenshots/imagem1.jpg) | ![Tela buscando novo conselho](screenshots/imagem2.jpg) |
+| ![Tela com o conselho gerado](screenshots/imagem1.png) | ![Tela buscando novo conselho](screenshots/imagem2.png) |
 
 ---
 
-## 🚀 Como Executar o Projeto Localmente
+## Como Executar o Projeto Localmente
 
 1. **Clone o repositório:**
 
