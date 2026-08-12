@@ -4,13 +4,153 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerador de Conselhos</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --accent-color: #38bdf8;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --btn-secondary: #334155;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .advice-id {
+      color: var(--accent-color);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .advice-text {
+      font-size: 1.35rem;
+      font-weight: 500;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .original-text {
+      display: block;
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.875rem;
+      margin-bottom: 2rem;
+      min-height: 1.25rem;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      background-color: var(--accent-color);
+      color: #0f172a;
+      border: none;
+      padding: 0.8rem 1.4rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background-color: var(--btn-secondary);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background-color: #475569;
+    }
+
+    .share-container {
+      border-top: 1px solid #334155;
+      padding-top: 1.5rem;
+    }
+
+    .share-title {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-social {
+      padding: 0.6rem 1rem;
+      font-size: 0.825rem;
+      color: #ffffff;
+      border-radius: 8px;
+    }
+
+    .btn-whatsapp { background-color: #25d366; }
+    .btn-facebook { background-color: #1877f2; }
+    .btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .btn-twitter { background-color: #1d9bf0; }
+  </style>
 </head>
 <body>
+
   <main class="card">
     <span class="advice-id">Conselho #<span id="advice-number">--</span></span>
     
-    <p class="advice-text" id="advice-text">Clique no botão para receber um conselho...</p>
+    <p class="advice-text" id="advice-text">Carregando conselho...</p>
     <small class="original-text" id="original-text"></small>
 
     <div class="actions">
@@ -19,7 +159,7 @@
     </div>
 
     <div class="share-container">
-      <p class="share-title">Compartilhar:</p>
+      <p class="share-title">Compartilhar</p>
       <div class="share-buttons">
         <a id="btn-whatsapp" class="btn btn-social btn-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         <a id="btn-facebook" class="btn btn-social btn-facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
@@ -29,6 +169,90 @@
     </div>
   </main>
 
-  <script src="script.js"></script>
+  <script>
+    const adviceNumber = document.getElementById('advice-number');
+    const adviceText = document.getElementById('advice-text');
+    const originalText = document.getElementById('original-text');
+    const btnGet = document.getElementById('btn-get');
+    const btnCopy = document.getElementById('btn-copy');
+
+    const btnWhatsapp = document.getElementById('btn-whatsapp');
+    const btnFacebook = document.getElementById('btn-facebook');
+    const btnInstagram = document.getElementById('btn-instagram');
+    const btnTweet = document.getElementById('btn-tweet');
+
+    async function translateText(text) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000); // Cancela se a tradução demorar mais de 3s
+
+        const response = await fetch(
+          `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|pt-BR`,
+          { signal: controller.signal }
+        );
+        clearTimeout(timeoutId);
+
+        const data = await response.json();
+        if (data && data.responseData && data.responseData.translatedText) {
+          return data.responseData.translatedText;
+        }
+        return text;
+      } catch (error) {
+        return text; // Se houver erro ou tempo limite excedido, retorna o conselho original em inglês
+      }
+    }
+
+    async function getAdvice() {
+      try {
+        btnGet.disabled = true;
+        adviceText.innerText = 'Buscando conselho...';
+        originalText.innerText = '';
+
+        const response = await fetch(`https://api.adviceslip.com/advice?timestamp=${new Date().getTime()}`);
+        const data = await response.json();
+
+        const adviceEn = data.slip.advice;
+        const advicePt = await translateText(adviceEn);
+
+        adviceNumber.innerText = data.slip.id;
+        adviceText.innerText = `"${advicePt}"`;
+
+        if (advicePt !== adviceEn) {
+          originalText.innerText = `Original (EN): "${adviceEn}"`;
+        }
+
+        updateSocialLinks(advicePt);
+      } catch (error) {
+        adviceText.innerText = 'Erro ao carregar conselho. Clique em "Novo Conselho" para tentar novamente.';
+      } finally {
+        btnGet.disabled = false;
+      }
+    }
+
+    function updateSocialLinks(text) {
+      const encodedText = encodeURIComponent(`${text} #ConselhoDoDia`);
+      btnWhatsapp.href = `https://api.whatsapp.com/send?text=${encodedText}`;
+      btnFacebook.href = `https://www.facebook.com/sharer/sharer.php?quote=${encodedText}`;
+      btnTweet.href = `https://twitter.com/intent/tweet?text=${encodedText}`;
+    }
+
+    function shareInstagram() {
+      navigator.clipboard.writeText(adviceText.innerText);
+      alert('Conselho copiado! Abrindo o Instagram para você colar no seu Status/Stories.');
+      window.open('https://instagram.com', '_blank');
+    }
+
+    function copyToClipboard() {
+      navigator.clipboard.writeText(adviceText.innerText);
+      alert('Conselho copiado para a área de transferência!');
+    }
+
+    btnGet.addEventListener('click', getAdvice);
+    btnCopy.addEventListener('click', copyToClipboard);
+    btnInstagram.addEventListener('click', shareInstagram);
+
+    // Carrega automaticamente o primeiro conselho assim que a página abre
+    window.addEventListener('DOMContentLoaded', getAdvice);
+  </script>
 </body>
 </html>

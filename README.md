@@ -6,9 +6,7 @@ Uma aplicação web interativa e responsiva que consome uma API pública para ge
 
 ##  Demonstração
 
-*(Substitua o link abaixo pelo link gerado pelo seu GitHub Pages depois de publicar)*
-
-🔗 [Acesse o projeto online](https://github.com/verlaneveloso44-a11y/gerador-de-conselhos)
+🔗 [Acesse o projeto online](https://verlaneveloso44-a11y.github.io/gerador-de-conselhos/)
 
 ---
 
