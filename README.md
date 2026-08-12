@@ -40,7 +40,7 @@ Clique aqui para testar o projeto online:
 
 | Conselho gerado | Buscando novo conselho |
 |:---:|:---:|
-| ![Tela com o conselho gerado](screenshots/imagem1.png) | ![Tela buscando novo conselho](screenshots/imagem2.png) |
+| ![Tela com o conselho gerado](screenshots/imagem2.png) | ![Tela buscando novo conselho](screenshots/imagem1.png) |
 
 ---
 
